@@ -13,5 +13,8 @@
 ## Django Admin Panel
 - http://127.0.0.1:8000/admin/auth/user/
 
+## Database user model
+- python manage.py createsuperuser
+
 ## SQL Schmea 
 - https://drawsql.app/teams/cypherak/diagrams/ecommerce-udemy
