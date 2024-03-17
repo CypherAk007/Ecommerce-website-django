@@ -20,4 +20,60 @@ class Product(models.Model):
     def __str__(self) -> str:
         return self.name
     
+class Review(models.Model):
+    user =  models.ForeignKey(User,on_delete=models.SET_NULL,null=True)
+    product = models.ForeignKey(Product,on_delete=models.SET_NULL,null=True)
+    name = models.CharField(max_length=200,null=True,blank=True)
+    rating = models.DecimalField(max_digits=7,decimal_places=2,null=True,blank=True)
+    comment = models.TextField(null=True,blank=True)
+    createdAt = models.DateTimeField(auto_now_add=True)
+    _id = models.AutoField(primary_key=True,editable=False)
 
+    # we return rating-**should be string ** for name of admin panel 
+    def __str__(self):
+        return str(self.rating)
+
+class Order(models.Model):
+    user =  models.ForeignKey(User,on_delete=models.SET_NULL,null=True)
+    paymetMethod = models.CharField(max_length=200,null=True,blank=True)
+    taxPrice = models.DecimalField(max_digits=7,decimal_places=2,null=True,blank=True)
+    shippingPrice = models.DecimalField(max_digits=7,decimal_places=2,null=True,blank=True)
+    totalPrice = models.DecimalField(max_digits=7,decimal_places=2,null=True,blank=True)
+    isPaid = models.BooleanField(default=False)
+    paidAt = models.DateTimeField(auto_now_add=False,null=True,blank=True)
+    isDelivered = models.BooleanField(default=False)
+    deliveredAt = models.DateTimeField(auto_now_add=False,null=True,blank=True)
+    createdAt = models.DateTimeField(auto_now_add=True)
+    _id = models.AutoField(primary_key=True,editable=False)
+    
+
+    # we return createdat-**should be string ** for name of admin panel 
+    def __str__(self):
+        return str(self.createdAt)
+    
+class OrderItem(models.Model):
+    order = models.ForeignKey(Order,on_delete=models.SET_NULL,null=True)
+    product = models.ForeignKey(Product,on_delete=models.SET_NULL,null=True)
+    name = models.CharField(max_length=200,null=True,blank=True)
+    qty = models.IntegerField(null=True,blank=True,default=0)
+    price = models.DecimalField(max_digits=7,decimal_places=2,null=True,blank=True)
+    image =  models.CharField(max_length=200,null=True,blank=True) #url to image
+    _id = models.AutoField(primary_key=True,editable=False)
+
+    # we return name is string but if its empty then str(None)-**should be string ** for name of admin panel 
+    def __str__(self):
+        return str(self.name)
+    
+
+class ShippingAddress(models.Model):
+    # on_delete=models.CASCADE -> if Order deleted delete shipping add also 
+    order = models.OneToOneField(Order,on_delete=models.CASCADE,null=True,blank=True)
+    address =  models.TextField(null=True,blank=True)
+    city = models.CharField(max_length=200,null=True,blank=True)
+    postalCode = models.CharField(max_length=200,null=True,blank=True)
+    country = models.CharField(max_length=200,null=True,blank=True)
+    shippingPrice = models.DecimalField(max_digits=7,decimal_places=2,null=True,blank=True)
+    _id = models.AutoField(primary_key=True,editable=False)
+
+    def __str__(self):
+        return str(self.address)
