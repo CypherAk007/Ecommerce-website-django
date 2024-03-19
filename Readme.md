@@ -22,3 +22,7 @@
 ## Add Image Feild to db - need image processing lib - pillow
 - pip install pillow
 - image = models.ImageField(null=True,blank=True)
+
+## Redux Imports
+- npm install redux react-redux  redux-thunk 
+- npm install redux-devtools-extension --legacy-peer-deps     
