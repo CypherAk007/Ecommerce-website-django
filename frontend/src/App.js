@@ -7,17 +7,20 @@ import HomeScreen from './screens/HomeScreen';
 import {BrowserRouter as Router, Route,Routes} from 'react-router-dom'
 import ProductScreen from './screens/ProductScreen';
 import axios from 'axios' 
+import CartScreen from './screens/CartScreen';
+
 function App() {
   
   return (
-    <Router>
+    <Router >
 
       <Header></Header>
       <main className='py-3'>
         <Container>
           <Routes>
               <Route path='/' element={<HomeScreen/>} exact/>     
-              <Route path='/product/:id' element={<ProductScreen/>} />     
+              <Route path='/product/:id' element={<ProductScreen/>} /> 
+              <Route path='/cart/:id?' element={<CartScreen/>} />     
           </Routes>
         </Container>
       </main>

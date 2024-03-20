@@ -26,3 +26,7 @@
 ## Redux Imports
 - npm install redux react-redux  redux-thunk 
 - npm install redux-devtools-extension --legacy-peer-deps     
+
+## React Navigation b/w pages
+import { useNavigate } from 'react-router-dom';
+navigate(`/cart/${id}?qty=${qty}`) 

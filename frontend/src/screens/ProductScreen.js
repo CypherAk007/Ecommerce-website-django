@@ -18,8 +18,11 @@ import { listProductDetails } from "../actions/productDetailsAction";
 import { useSelector, useDispatch } from "react-redux";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
-// import {Button} from 'react-bootstrap'
+
+import { useNavigate } from 'react-router-dom';
+
 const ProductScreen = ({ match }) => {
+  const navigate = useNavigate()
   const [qty,setQty] = useState(1)
 
   const { id } = useParams();
@@ -30,7 +33,11 @@ const ProductScreen = ({ match }) => {
   useEffect(() => {
     dispatch(listProductDetails(id));
   }, [dispatch]);
-
+  const addToCartHandler = ()=>{
+    // console.log(`Added to Cart ${qty} ${id}`);
+    // history.push(`/cart/${id}?qty=${qty}`) // Version degreaded use 
+    navigate(`/cart/${id}?qty=${qty}`) // Version degreaded so -> useNavigate
+  }
   return (
     <div>
       <Link to="/" className="btn btn-light my-3">
@@ -107,6 +114,7 @@ const ProductScreen = ({ match }) => {
                 <ListGroup.Item>
                   <Row>
                     <Button
+                      onClick={addToCartHandler}
                       className="btn-block"
                       type="button"
                       disabled={product.countInStock == 0}
