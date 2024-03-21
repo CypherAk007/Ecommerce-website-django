@@ -28,5 +28,10 @@
 - npm install redux-devtools-extension --legacy-peer-deps     
 
 ## React Navigation b/w pages
-import { useNavigate } from 'react-router-dom';
-navigate(`/cart/${id}?qty=${qty}`) 
+- import { useNavigate } from 'react-router-dom';
+- navigate(`/cart/${id}?qty=${qty}`) 
+
+## Querry Parameter 
+- const location = useLocation()
+- const queryParams = new URLSearchParams(location.search)
+- const value = queryParams.get('qty')
