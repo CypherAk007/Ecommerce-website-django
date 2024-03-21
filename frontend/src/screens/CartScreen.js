@@ -11,7 +11,7 @@ import {
 import { useNavigate, useParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import Message from "../components/Message";
-import { addToCart } from "../actions/cartActions";
+import { addToCart, removeFromCart } from "../actions/cartActions";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 const CartScreen = () => {
@@ -34,6 +34,7 @@ const CartScreen = () => {
 
   const removeFromCartHandler = (id)=>{
     console.log('remove:',id);
+    dispatch(removeFromCart(id))
   }
 
   const checkoutHandler = ()=>{
