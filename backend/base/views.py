@@ -14,16 +14,13 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
-    @classmethod
-    def get_token(cls, user):
-        token = super().get_token(user)
+    def validate(self, attrs):
+        data = super().validate(attrs)
+        
+        data['username'] = self.user.username 
+        data['email'] = self.user.email
 
-        # Add custom claims add as many values as you want
-        token['username'] = user.username
-        token['message'] = 'hello world'
-        # ...
-
-        return token
+        return data
     
 @api_view(['GET'])
 def getRoutes(request):
