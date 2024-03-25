@@ -56,3 +56,6 @@
 ## Get Custom name, _id, isAdmin with serilizer and not modifing db
 - Admin att official docs https://docs.djangoproject.com/en/5.0/ref/contrib/auth/
 - ![postmanimg](resources/custom_ser.png)
+
+## New Seriliazer for token regenerate - 
+- ![Alt text](resources/newtoken.png)
