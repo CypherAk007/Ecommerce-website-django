@@ -10,6 +10,27 @@ class ProductSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
+    # To let django know that name is custom attribute
+    name = serializers.SerializerMethodField(read_only = True)
+    # updating the id to _id as in frontend we have kept it like this
+    _id = serializers.SerializerMethodField(read_only = True)
+
+    isAdmin = serializers.SerializerMethodField(read_only = True)
+
+
     class Meta:
         model = User
-        fields = ['id','username','email']
+        fields = ['id','_id','username','email','name','isAdmin']
+
+    def get__id(self,obj): #name is _id so get _ _id
+        return obj.id
+    
+    def get_isAdmin(self,obj): #get if its admin access or not
+        return obj.is_staff
+    
+    def get_name(self,obj):
+        name = obj.first_name
+        # if first name is empty return email 
+        if name == '':
+            name = obj.email
+        return name
