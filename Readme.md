@@ -59,3 +59,7 @@
 
 ## New Seriliazer for token regenerate - 
 - ![Alt text](resources/newtoken.png)
+
+## Getting all users from db
+- adding endpoint and also view to get users
+- ![Alt text](resources/getusersendpt.png)
