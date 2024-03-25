@@ -41,3 +41,7 @@
 - Token access : http://127.0.0.1:8000/api/users/login/
 - decode your token: https://jwt.io/
 - Change LifeSpan of token : https://django-rest-framework-simplejwt.readthedocs.io/en/latest/settings.html#access-token-lifetime
+
+## Customize JWT Auth Tokens
+- https://django-rest-framework-simplejwt.readthedocs.io/en/latest/customizing_token_claims.html
+- ![img_custom_jwt_token](resources/custom_jwt_access_token.png)

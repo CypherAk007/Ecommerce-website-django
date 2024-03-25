@@ -9,6 +9,22 @@ from rest_framework.response import Response
 from .models import Product
 from .serailizers import ProductSerializer
 
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework_simplejwt.views import TokenObtainPairView
+
+
+class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
+    @classmethod
+    def get_token(cls, user):
+        token = super().get_token(user)
+
+        # Add custom claims add as many values as you want
+        token['username'] = user.username
+        token['message'] = 'hello world'
+        # ...
+
+        return token
+    
 @api_view(['GET'])
 def getRoutes(request):
     routes = [
