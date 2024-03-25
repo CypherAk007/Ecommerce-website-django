@@ -35,3 +35,9 @@
 - const location = useLocation()
 - const queryParams = new URLSearchParams(location.search)
 - const value = queryParams.get('qty')
+
+## JWT Auth 
+- https://django-rest-framework-simplejwt.readthedocs.io/en/latest/getting_started.html
+- Token access : http://127.0.0.1:8000/api/users/login/
+- decode your token: https://jwt.io/
+- Change LifeSpan of token : https://django-rest-framework-simplejwt.readthedocs.io/en/latest/settings.html#access-token-lifetime
