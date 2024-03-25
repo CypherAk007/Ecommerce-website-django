@@ -45,3 +45,9 @@
 ## Customize JWT Auth Tokens
 - https://django-rest-framework-simplejwt.readthedocs.io/en/latest/customizing_token_claims.html
 - ![img_custom_jwt_token](resources/custom_jwt_access_token.png)
+
+## Getting user data with token
+- Without token
+- ![Alt text](resources/postman_without_accesstoken.png)
+- With Token
+- ![Alt text](resources/postman_user_retrival.png)
