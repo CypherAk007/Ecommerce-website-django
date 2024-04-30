@@ -39,7 +39,7 @@ const CartScreen = () => {
 
   const checkoutHandler = ()=>{
     // Check for auth and send to shipping page 
-    navigate(`/login?redirect=shipping`) // Version degreaded so -> useNavigate
+    navigate(`/shipping`) // Version degreaded so -> useNavigate
   }
   return (
     <Row>

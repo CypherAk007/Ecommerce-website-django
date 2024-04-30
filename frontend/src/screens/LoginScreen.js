@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, redirect, useLocation, useNavigate } from "react-router-dom";
 import { Form, Button, Row, Col } from "react-bootstrap";
-import { UseDispatch, useSelector } from "react-redux";
+import { UseDispatch, useDispatch, useSelector } from "react-redux";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 import { login } from "../actions/userActions";
@@ -20,10 +20,23 @@ const LoginScreen = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  
+    const userLogin = useSelector(state=> state.userLogin)
+    const {error,loading,userInfo} = userLogin
+
+    const dispatch = useDispatch()
+
+    useEffect(()=>{
+        if (userInfo){
+            navigate(redirect)
+        }
+    },[navigate,userInfo,redirect])
 
   const submitHandler = (e) => {
     e.preventDefault();
+    dispatch(login(email,password))
     console.log("Submitted");
+
   };
 
   const registerNavHandler = () => {
@@ -34,6 +47,9 @@ const LoginScreen = () => {
         navigate(`/register`)
     }
   };
+
+
+
   return (
     <FormContainer>
       <h1>Sign In</h1>
