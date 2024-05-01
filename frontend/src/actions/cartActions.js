@@ -2,6 +2,7 @@ import axios from "axios";
 import { CART_ADD_ITEM ,CART_REMOVE_ITEM,CART_SAVE_SHIPPING_ADDRESS} from "../constants/cartConstants";
 
 export const addToCart = (id, qty) => async (dispatch, getState) => {
+  // getState-> like useselector , we need when we load data to browser 
   const { data } = await axios.get(`/api/products/${id}`);
 
   dispatch({
@@ -15,7 +16,8 @@ export const addToCart = (id, qty) => async (dispatch, getState) => {
       qty,
     },
   });
-
+  // load data to localStorage so that after refresh of page we can take data fm here and put it into our state
+  // stringify as it needs to be string value 
   localStorage.setItem("cartItems", JSON.stringify(getState().cart.cartItems));
 };
 

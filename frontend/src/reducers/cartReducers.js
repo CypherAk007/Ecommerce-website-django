@@ -1,11 +1,13 @@
 import { CART_ADD_ITEM,CART_REMOVE_ITEM,CART_SAVE_SHIPPING_ADDRESS } from "../constants/cartConstants";
-
+// 1-> cart reducer for checking if product exists in cart and updating it acc
 export const cartReducer = (state={cartItems:[],shippingAddress:{}},action)=>{
     switch(action.type){
         case CART_ADD_ITEM:
             const item = action.payload
             const existItem = state.cartItems.find(x=>x.product===item.product)
             if(existItem){
+                // here x.product = is product id ref. cartActions.js -> product: data._id,
+                // x.product===existItem.product => if product id matches replace with incoming item else leave it with x(prevly exitsting item )
                 return{
                     ...state,
                     cartItems:state.cartItems.map(x=>
@@ -13,6 +15,7 @@ export const cartReducer = (state={cartItems:[],shippingAddress:{}},action)=>{
                         )
                 }
             }else{
+                // if item does not exits 
                 return{
                     ...state,
                     cartItems:[...state.cartItems,item]

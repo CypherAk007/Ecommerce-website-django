@@ -13,13 +13,15 @@ const reducer = combineReducers({
     userLogin:userLoginReducers,
 })
 
+// 2-> pull data from local storge and store it in our initial state if not there ->[]
 const cartItemsFromStorage = localStorage.getItem('cartItems')?
     JSON.parse(localStorage.getItem('cartItems')):[]
 
 const userInfoFromStorage = localStorage.getItem('userInfo')?
     JSON.parse(localStorage.getItem('userInfo')): null
 
-
+    // cart:{cartItems: cartItemsFromStorage} -> const cartReducer = (state={cartItems:[]
+    // cart:cartReducer, - above in reducer so its cart:{cartItems:[]}
 const initialState = {
     cart:{cartItems: cartItemsFromStorage},
     userLogin:{userInfo: userInfoFromStorage}
