@@ -19,11 +19,11 @@ import { useSelector, useDispatch } from "react-redux";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const ProductScreen = ({ match }) => {
-  const navigate = useNavigate()
-  const [qty,setQty] = useState(1)
+  const navigate = useNavigate();
+  const [qty, setQty] = useState(1);
 
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -33,11 +33,11 @@ const ProductScreen = ({ match }) => {
   useEffect(() => {
     dispatch(listProductDetails(id));
   }, [dispatch]);
-  const addToCartHandler = ()=>{
+  const addToCartHandler = () => {
     // console.log(`Added to Cart ${qty} ${id}`);
-    // history.push(`/cart/${id}?qty=${qty}`) // Version degreaded use 
-    navigate(`/cart/${id}?qty=${qty}`) // Version degreaded so -> useNavigate
-  }
+    // history.push(`/cart/${id}?qty=${qty}`) // Version degreaded use
+    navigate(`/cart/${id}?qty=${qty}`); // Version degreaded so -> useNavigate
+  };
   return (
     <div>
       <Link to="/" className="btn btn-light my-3">
@@ -97,15 +97,19 @@ const ProductScreen = ({ match }) => {
                   <ListGroup.Item>
                     <Row>
                       <Col>Qty</Col>
-                      <Col xs='auto' className="my-1">
-                        <Form.Control as="select" value={qty} onChange={(e)=>setQty(e.target.value)}>
-                           {
-                            [...Array(product.countInStock).keys()].map((x)=>(
-                              <option key={x+1} value={x+1}>
-                                {x+1}
-                              </option>
-                            ))
-                           }
+                      <Col xs="auto" className="my-1">
+                        <Form.Control
+                          as="select"
+                          value={qty}
+                          onChange={(e) => setQty(e.target.value)}
+                        >
+                          {/* ...Array(product.countInStock).keys() == 3 then this returns->[0,1,2] and x is cur val(like 0,1,..) in array
+                          and x+1 because we have array starting fm 0 above */}
+                          {[...Array(product.countInStock).keys()].map((x) => (
+                            <option key={x + 1} value={x + 1}>
+                              {x + 1}
+                            </option>
+                          ))}
                         </Form.Control>
                       </Col>
                     </Row>
