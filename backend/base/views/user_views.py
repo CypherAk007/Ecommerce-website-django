@@ -17,6 +17,22 @@ from django.contrib.auth.hashers import make_password
 from rest_framework import status
 
 
+class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
+    @classmethod
+    def get_token(cls, user):
+        token = super().get_token(user)
+
+        # Add custom claims
+        token['username'] = user.username
+        token['message'] = 'hello world'
+        # ...
+
+        return token
+    # check at http://127.0.0.1:8000/api/users/login/ 
+    # copy the token and parse at jwt.io for getting custom decoded val 
+class MyTokenObtainPairView(TokenObtainPairView):
+    serializer_class = MyTokenObtainPairSerializer
+
 @api_view(['POST'])
 def registerUser(request):
     data = request.data 

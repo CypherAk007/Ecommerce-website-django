@@ -86,7 +86,7 @@ SIMPLE_JWT = {
 
     # "TOKEN_OBTAIN_SERIALIZER": "rest_framework_simplejwt.serializers.TokenObtainPairSerializer",
     # It will work instead of the default serializer(TokenObtainPairSerializer).
-    # "TOKEN_OBTAIN_SERIALIZER": "base.views.MyTokenObtainPairSerializer",
+    # "TOKEN_OBTAIN_SERIALIZER": "base.views.user_views.MyTokenObtainPairSerializer",
 
     "TOKEN_REFRESH_SERIALIZER": "rest_framework_simplejwt.serializers.TokenRefreshSerializer",
     "TOKEN_VERIFY_SERIALIZER": "rest_framework_simplejwt.serializers.TokenVerifySerializer",

@@ -19,7 +19,7 @@ const CartScreen = () => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const quantity = queryParams.get("qty");
-  // console.log('id',id,'qty',quantity);
+  console.log('id',id,'qty',quantity);
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
@@ -39,7 +39,8 @@ const CartScreen = () => {
 
   const checkoutHandler = ()=>{
     // Check for auth and send to shipping page 
-    navigate(`/shipping`) // Version degreaded so -> useNavigate
+    // navigate(`/shipping`) // Version degreaded so -> useNavigate
+    navigate('/login?redirect=shipping')
   }
   return (
     <Row>
