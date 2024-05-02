@@ -36,7 +36,7 @@ class UserSerializer(serializers.ModelSerializer):
             name = obj.email
         return name
 
-
+# For refresh token 
 class UserSerializerWithToken(UserSerializer):
     token = serializers.SerializerMethodField(read_only = True)
     class Meta:

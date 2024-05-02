@@ -18,16 +18,19 @@ from rest_framework import status
 
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
-    @classmethod
-    def get_token(cls, user):
-        token = super().get_token(user)
+    def validate(self, attrs):
+        data = super().validate(attrs)
 
-        # Add custom claims
-        token['username'] = user.username
-        token['message'] = 'hello world'
-        # ...
+        # print('test',data)
+        # data['username'] = self.user.username 
+        # data['email'] = self.user.email
+        serializer = UserSerializerWithToken(self.user).data
 
-        return token
+        for k,v in serializer.items():
+
+            data[k] = v 
+        # print(data)
+        return data
     # check at http://127.0.0.1:8000/api/users/login/ 
     # copy the token and parse at jwt.io for getting custom decoded val 
 class MyTokenObtainPairView(TokenObtainPairView):

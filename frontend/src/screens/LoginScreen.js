@@ -27,8 +27,10 @@ const LoginScreen = () => {
     const dispatch = useDispatch()
 
     useEffect(()=>{
+      // if user logged in move them back to same page as before 
         if (userInfo){
             navigate(redirect)
+
         }
     },[navigate,userInfo,redirect])
 
@@ -53,6 +55,8 @@ const LoginScreen = () => {
   return (
     <FormContainer>
       <h1>Sign In</h1>
+      {error && <Message variant='danger'>{error}</Message>}
+      {loading&&<Loader></Loader>}
       <Form onSubmit={submitHandler}>
         <Form.Group controlId="email">
           <Form.Label>Email Address</Form.Label>
@@ -78,7 +82,8 @@ const LoginScreen = () => {
       </Form>
       <Row className="py-3">
         <Col>
-          New Customer? <Button onClick={registerNavHandler}>Register</Button>
+          {/* New Customer? <Button onClick={registerNavHandler}>Register</Button> */}
+          New Customer? <Link to={redirect?`/register?redirect=${redirect}`:'/register'} onClick={registerNavHandler}>Register</Link>
         </Col>
       </Row>
     </FormContainer>
