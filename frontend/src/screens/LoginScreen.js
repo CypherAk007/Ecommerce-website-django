@@ -42,6 +42,7 @@ const LoginScreen = () => {
   };
 
   const registerNavHandler = () => {
+    console.log('Nav Handler Register');
     if (redirect){
     navigate(`/register?redirect=${redirect}`);
 
@@ -83,7 +84,7 @@ const LoginScreen = () => {
       <Row className="py-3">
         <Col>
           {/* New Customer? <Button onClick={registerNavHandler}>Register</Button> */}
-          New Customer? <Link to={redirect?`/register?redirect=${redirect}`:'/register'} onClick={registerNavHandler}>Register</Link>
+          New Customer? <Link to={redirect?`/register?redirect=${redirect}`:'/register'} >Register</Link>
         </Col>
       </Row>
     </FormContainer>

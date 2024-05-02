@@ -54,11 +54,29 @@ def registerUser(request):
         message = {'detail':'User with this email already exists'}
         return Response(message,status=status.HTTP_400_BAD_REQUEST)
     
-@api_view(['GET'])
+@api_view(['PUT'])
 @permission_classes([IsAuthenticated])
 def getUserProfile(request):
     user = request.user
     serializer = UserSerializer(user,many = False)
+    return Response(serializer.data )
+
+    
+@api_view(['PUT'])
+@permission_classes([IsAuthenticated])
+def updateUserProfile(request):
+    user = request.user # we need user get user object from the token thats sent
+    serializer = UserSerializerWithToken(user,many = False) #when we update the user we want to put new token in the local storage
+    
+    data  = request.data 
+    user.first_name = data['name']
+    user.username = data['email']
+    user.email = data['email']
+    if data['password'] != '':
+        user.password = make_password(data['password'])
+    
+    user.save()
+
     return Response(serializer.data )
 
 @api_view(['GET'])

@@ -12,6 +12,7 @@ import LoginScreen from './screens/LoginScreen';
 import ShippingScreen from './screens/ShippingScreen';
 import { Children } from 'react';
 import RootLayout from './RootLayout';
+import RegisterScreen from './screens/RegisterScreen';
 
 const router = createBrowserRouter([
   {path:'/',element:<RootLayout></RootLayout>,
@@ -19,6 +20,7 @@ const router = createBrowserRouter([
   children:[
     {index:true,element:<HomeScreen/>},
     {path:'login',element:<LoginScreen></LoginScreen>},
+    {path:'register',element:<RegisterScreen></RegisterScreen>},
     {path:'product/:id',element:<ProductScreen></ProductScreen>},
     {path:'cart/:id?',element:<CartScreen></CartScreen>},
     {path:'shipping',element:<ShippingScreen></ShippingScreen>},
