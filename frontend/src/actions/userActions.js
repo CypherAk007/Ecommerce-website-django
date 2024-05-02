@@ -14,6 +14,10 @@ import {
   USER_DETAILS_SUCCESS,
   USER_DETAILS_FAIL,
 
+  USER_UPDATE_PROFILE_REQUEST,
+  USER_UPDATE_PROFILE_SUCCESS,
+  USER_UPDATE_PROFILE_FAIL,
+  USER_UPDATE_PROFILE_RESET,
 } from "../constants/userConstants";
 
 export const login = (email, password) => async (dispatch) => {
@@ -135,4 +139,49 @@ export const getUserDetails = (id) => async (dispatch,getState) => {
 };
 
 
+export const updateUserProfile = (user) => async (dispatch,getState) => {
+  // we will send data in get request - The token ***
+  try {
+    dispatch({
+      type: USER_UPDATE_PROFILE_REQUEST,
+    });
+// userInfo - whole user object with token and access and refresh we need token fm here
+// Linked to config -> Authroziation 
+    const {
+      userLogin:{userInfo},
+    } = getState()
+
+
+    const config = {
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `Bearer ${userInfo.token}`
+      },
+    };
+    // here id can be -> 'profile' or dynamic ${id}
+    const { data } = await axios.put(
+      `/api/users/profile/update/`,
+      user,
+      config
+    );
+    dispatch({
+        type:USER_UPDATE_PROFILE_SUCCESS,
+        payload:data
+    })
+
+    dispatch({
+      type:USER_LOGIN_SUCCESS,
+      payload:data
+  })
+  localStorage.setItem('userInfo',JSON.stringify(data))
+  } catch (error) {
+    dispatch({
+      type: USER_UPDATE_PROFILE_FAIL,
+      payload:
+        error.response && error.response.data.detail
+          ? error.response.data.detail
+          : error.message,
+    });
+  }
+};
 

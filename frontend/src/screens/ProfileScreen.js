@@ -5,9 +5,10 @@ import { Form, Button, Row, Col } from "react-bootstrap";
 import { UseDispatch, useDispatch, useSelector } from "react-redux";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
-import { getUserDetails } from "../actions/userActions";
+import { getUserDetails, updateUserProfile } from "../actions/userActions";
 import { Redirect } from "react-router-dom";
 import FormContainer from "../components/FormContainer";
+import { USER_UPDATE_PROFILE_RESET } from "../constants/userConstants";
 const ProfileScreen = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -22,6 +23,10 @@ const ProfileScreen = () => {
   const userDetails = useSelector((state) => state.userDetails);
   const { error, loading, user } = userDetails;
 
+  const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
+  const { success } = userUpdateProfile;
+
+
   //   Make sure user is logged in
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -34,7 +39,8 @@ const ProfileScreen = () => {
       navigate("/login");
     } else {
       // if user info has already been loaded
-      if (!user || !user.name) {
+      if (!user || !user.name || success) {
+        dispatch({type:USER_UPDATE_PROFILE_RESET})
         dispatch(getUserDetails("profile"));
       } else {
         // if we have user info
@@ -42,7 +48,7 @@ const ProfileScreen = () => {
         setEmail(user.email);
       }
     }
-  }, [dispatch, userInfo, userInfo, user]);
+  }, [dispatch, userInfo, userInfo, user,success]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -51,14 +57,21 @@ const ProfileScreen = () => {
       setMessage("Passwords do not match !!");
     } else {
       console.log("Updating...");
+      dispatch(updateUserProfile({
+
+          'id':user._id,
+          'name':name,
+          'email':email,
+          'password':password,
+      }
+      ))
+      setMessage("");
     }
   };
   return (
     <Row>
       <Col md={3}>
         <h2>User Profile</h2>
-
-          <h1>Sign In</h1>
           {message && <Message variant="danger">{message}</Message>}
           {error && <Message variant="danger">{error}</Message>}
           {loading && <Loader></Loader>}
