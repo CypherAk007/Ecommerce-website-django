@@ -14,6 +14,8 @@ import { Children } from 'react';
 import RootLayout from './RootLayout';
 import RegisterScreen from './screens/RegisterScreen';
 import ProfileScreen from './screens/ProfileScreen';
+import PaymentScreen from './screens/PaymentScreen';
+import PlaceOrderScreen from './screens/PlaceOrderScreen';
 
 const router = createBrowserRouter([
   {path:'/',element:<RootLayout></RootLayout>,
@@ -26,6 +28,8 @@ const router = createBrowserRouter([
     {path:'product/:id',element:<ProductScreen></ProductScreen>},
     {path:'cart/:id?',element:<CartScreen></CartScreen>},
     {path:'shipping',element:<ShippingScreen></ShippingScreen>},
+    {path:'placeorder',element:<PlaceOrderScreen></PlaceOrderScreen>},
+    {path:'payment',element:<PaymentScreen></PaymentScreen>},
 
 
   ]},
