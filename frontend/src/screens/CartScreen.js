@@ -26,6 +26,11 @@ const CartScreen = () => {
   // console.log(cartItems,';::');
   const navigate = useNavigate()
 
+  // //   Make sure user is logged in
+  // const userLogin = useSelector((state) => state.userLogin);
+  // const { userInfo } = userLogin;
+  
+
   useEffect(() => {
     if (id) {
       dispatch(addToCart(id, quantity));
@@ -39,8 +44,14 @@ const CartScreen = () => {
 
   const checkoutHandler = ()=>{
     // Check for auth and send to shipping page 
+  //   const redirectTo ='/shipping'
+  //   if (!userInfo) {
+  //     navigate("/login?redirect="+redirectTo);
+  //   } else {
+  //     navigate(redirectTo);
+  // }
     // navigate(`/shipping`) // Version degreaded so -> useNavigate
-    navigate('/login?redirect=shipping')
+    navigate('/login?redirect=/shipping')
   }
   return (
     <Row>
