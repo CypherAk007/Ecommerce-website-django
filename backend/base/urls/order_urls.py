@@ -4,6 +4,6 @@ from base.views import user_views as views
 
 
 urlpatterns = [
-
+    path('add/',views.addOrderItems, name='order-add'),
 
 ]
