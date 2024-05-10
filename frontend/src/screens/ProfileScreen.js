@@ -44,10 +44,10 @@ const ProfileScreen = () => {
       navigate("/login");
     } else {
       // if user info has already been loaded
-      if (!user || !user.name || success) {
+      if (!user || !user.name || success || userInfo._id!==user._id) {
         dispatch({ type: USER_UPDATE_PROFILE_RESET });
         dispatch(getUserDetails("profile"));
-        dispatch(listMyOrders());
+        dispatch(listMyOrders()); 
       } else {
         // if we have user info
         setName(user.name);
