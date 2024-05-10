@@ -6,7 +6,7 @@ import { Table, Button } from "react-bootstrap";
 import { UseDispatch, useDispatch, useSelector } from "react-redux";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
-import { listUsers } from "../actions/userActions";
+import { deleteUser, listUsers } from "../actions/userActions";
 
 const UserListScreen = () => {
   const dispatch = useDispatch();
@@ -17,6 +17,9 @@ const UserListScreen = () => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
+  const userDelete = useSelector((state) => state.userDelete);
+  const { success:successDelete } = userDelete;
+
   useEffect(() => {
     if (userInfo && userInfo.isAdmin){
 
@@ -24,10 +27,14 @@ const UserListScreen = () => {
     }else{
         navigate('/login')
     }
-  }, [dispatch]);
+  }, [dispatch,successDelete,navigate]);
 
   const deleteHandler = (id)=>{
     console.log('Delete',id);
+    if(window.confirm('Are you sure you want to delete the user?')){
+        dispatch(deleteUser(id))
+
+    }
   }
 
   return (
@@ -59,7 +66,7 @@ const UserListScreen = () => {
                   {user.isAdmin ? (
                     <i className="fas fa-check" style={{ color: "green" }}></i>
                   ) : (
-                    <i className="fas fa-check" style={{ color: "red" }}>
+                    <i className="fas fa-x" style={{ color: "red" }}>
                       {" "}
                     </i>
                   )}
@@ -72,7 +79,7 @@ const UserListScreen = () => {
                   </LinkContainer>
 
                   <Button variant="danger" className="btn-sm" onClick={()=>deleteHandler(user._id)}>
-                    <i className="fas fa-edit"> </i>
+                    <i className="fas fa-trash"> </i>
                   </Button>
                 </td>
               </tr>
