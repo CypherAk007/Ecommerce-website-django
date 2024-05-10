@@ -4,7 +4,7 @@ import {composeWithDevTools} from 'redux-devtools-extension'
 import {productListReducers} from './reducers/productReducers'
 import { ProductDetailsReducer } from './reducers/productDetailsReducers'
 import { cartReducer } from './reducers/cartReducers'
-import { userDetailsReducers, userLoginReducers, userRegisterReducers, userUpdateProfileReducer } from './reducers/userReducers'
+import { userDetailsReducers, userListReducer, userLoginReducers, userRegisterReducers, userUpdateProfileReducer } from './reducers/userReducers'
 import { orderCreateReducer, orderDetailsReducer, orderListMyReducer, orderPayReducer } from './reducers/orderReducers'
 
 const reducer = combineReducers({
@@ -15,10 +15,12 @@ const reducer = combineReducers({
     userRegister:userRegisterReducers,
     userDetails:userDetailsReducers,
     userUpdateProfile:userUpdateProfileReducer,
+    userList:userListReducer,
     orderCreate:orderCreateReducer,
     orderDetails:orderDetailsReducer,
     orderPay:orderPayReducer,
     orderListMy:orderListMyReducer,
+
 })
 
 // 2-> pull data from local storge and store it in our initial state if not there ->[]
