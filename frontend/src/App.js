@@ -20,6 +20,7 @@ import OrderScreen from './screens/OrderScreen';
 import UserListScreen from './screens/UserListScreen';
 import EditUserScreen from './screens/UserEditScreen';
 import ProductListScreen from './screens/ProductListScreen';
+import ProductEditScreen from './screens/ProductEditScreen';
 
 const router = createBrowserRouter([
   {path:'/',element:<RootLayout></RootLayout>,
@@ -40,6 +41,7 @@ const router = createBrowserRouter([
     {path:'admin/user/:id/edit',element:<EditUserScreen></EditUserScreen>},
     
     {path:'admin/productlist',element:<ProductListScreen></ProductListScreen>},
+    {path:'admin/product/:id/edit',element:<ProductEditScreen></ProductEditScreen>},
   ]},
 ])
 function App() {
