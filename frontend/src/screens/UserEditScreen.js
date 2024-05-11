@@ -5,12 +5,14 @@ import { Form, Button, Row, Col } from "react-bootstrap";
 import { UseDispatch, useDispatch, useSelector } from "react-redux";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
-import { getUserDetails } from "../actions/userActions";
+import { getUserDetails, updateUser } from "../actions/userActions";
 import { Redirect } from "react-router-dom";
 
 import FormContainer from "../components/FormContainer";
+import { USER_UPDATE_RESET } from "../constants/userConstants";
 const EditUserScreen = () => {
   const { id } = useParams();
+  const navigate = useNavigate()
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -19,20 +21,31 @@ const EditUserScreen = () => {
   const userDetails = useSelector((state) => state.userDetails);
   const { error, loading, user } = userDetails;
 
+  const userUpdate = useSelector((state) => state.userUpdate);
+  const { error:errorUpdate, loading:loadingUpdate, success:successUpdate } = userUpdate;
+
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!user.name||user._id!==Number(id)){
-      dispatch(getUserDetails(id))
+    if (successUpdate){
+      dispatch({type:USER_UPDATE_RESET})
+      navigate('/admin/userlist')
     }else{
-      setName(user.name)
-      setEmail(user.email)
-      setIsAdmin(user.isAdmin)
+      if (!user.name||user._id!==Number(id)){
+        dispatch(getUserDetails(id))
+      }else{
+        setName(user.name)
+        setEmail(user.email)
+        setIsAdmin(user.isAdmin)
+      }
+
     }
-  }, [user,id]);
+
+  }, [user,id,successUpdate,navigate]);
 
   const submitHandler = (e) => {
     e.preventDefault();
+    dispatch(updateUser({_id:user._id,name,email,isAdmin}))
   };
 
   return (
@@ -41,6 +54,8 @@ const EditUserScreen = () => {
 
       <FormContainer>
         <h1>Edit User</h1>
+        {loadingUpdate &&<Loader></Loader>}
+        {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
         {loading ? (
           <Loader></Loader>
         ) : error ? (

@@ -27,7 +27,7 @@ const UserListScreen = () => {
     }else{
         navigate('/login')
     }
-  }, [dispatch,successDelete,navigate]);
+  }, [dispatch,successDelete,navigate,userInfo]);
 
   const deleteHandler = (id)=>{
     console.log('Delete',id);
