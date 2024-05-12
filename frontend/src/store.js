@@ -5,7 +5,7 @@ import {productCreateReducer, productDeleteReducer, productListReducers, product
 import { productDetailsReducer } from './reducers/productDetailsReducers'
 import { cartReducer } from './reducers/cartReducers'
 import { userDetailsReducers, userListReducer, userLoginReducers, userRegisterReducers, userUpdateProfileReducer, userUpdateReducers } from './reducers/userReducers'
-import { orderCreateReducer, orderDetailsReducer, orderListMyReducer, orderPayReducer } from './reducers/orderReducers'
+import { orderCreateReducer, orderDetailsReducer, orderListMyReducer, orderListReducer, orderPayReducer } from './reducers/orderReducers'
 
 const reducer = combineReducers({
     productList: productListReducers,
@@ -26,7 +26,7 @@ const reducer = combineReducers({
     orderDetails:orderDetailsReducer,
     orderPay:orderPayReducer,
     orderListMy:orderListMyReducer,
-
+    orderList:orderListReducer,
 })
 
 // 2-> pull data from local storge and store it in our initial state if not there ->[]
