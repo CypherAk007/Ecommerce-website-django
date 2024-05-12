@@ -27,7 +27,7 @@ const router = createBrowserRouter([
   {path:'/',element:<RootLayout></RootLayout>,
   // errorElement:<App></App>,
   children:[
-    {index:true,element:<HomeScreen/>},
+    {path:'',element:<HomeScreen/>},
     {path:'login',element:<LoginScreen></LoginScreen>},
     {path:'register',element:<RegisterScreen></RegisterScreen>},
     {path:'profile',element:<ProfileScreen></ProfileScreen>},
