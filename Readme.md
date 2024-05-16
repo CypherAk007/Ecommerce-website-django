@@ -1,65 +1,53 @@
-## React-Router-Dom Changes for new version 
-- https://stackoverflow.com/questions/70290770/react-typeerror-cannot-read-properties-of-undefined-reading-params
+# ProShop Ecommerce Website
 
-## Activate Venv
-- source venv/bin/activate
+Welcome to ProShop, your ultimate destination for online shopping! Built with cutting-edge technologies, ProShop offers a seamless shopping experience for both customers and administrators. Below is an overview of the features and technologies incorporated into our platform.
 
-## Django Rest Framework
-- https://www.django-rest-framework.org/api-guide/views/#api_view
+## Features
 
-## CORS
-- https://pypi.org/project/django-cors-headers/
+### Customer Experience
+- **Customer Login:** Secure authentication system for customers to access their accounts.
+- **Product Browsing:** Browse through a wide range of products with ease.
+- **Add to Cart Functionality:** Easily add desired items to the shopping cart for checkout.
+- **Secure Checkout:** Smooth and secure checkout process for hassle-free purchasing.
+- **Order Tracking:** Track the status of orders from placement to delivery.
+  
+### Admin Panel
+- **Admin Login:** Secure login system for administrators to manage the platform.
+- **Dashboard:** Comprehensive dashboard providing key insights into sales, orders, and customer data.
+- **Product Management:** Add, remove, and update products with ease.
+- **Order Management:** View, update, and manage orders, including marking them as delivered.
+- **User Management:** Add, remove, and update user accounts.
+- **Access Control:** Restrict access for customers to admin features for enhanced security.
 
-## Django Admin Panel
-- http://127.0.0.1:8000/admin/auth/user/
+## Technologies Used
+- **Frontend:** React.js for building dynamic user interfaces.
+- **State Management:** Redux for managing application state efficiently.
+- **Backend:** Django framework for robust backend development.
+- **Database:** PostgreSQL for secure and scalable data storage.
+- **Static Files Hosting:** AWS S3 for serving static files, ensuring high availability and reliability.
+- **Hosting:** Vercel for seamless deployment and hosting of the application.
 
-## Database user model
-- python manage.py createsuperuser
+## Website URL
+[ProShop](https://proshop-hosting-m2jn0ab9j-abhisheks-projects-1fe066f3.vercel.app/)
 
-## SQL Schmea 
-- https://drawsql.app/teams/cypherak/diagrams/ecommerce-udemy
+## Installation
 
-## Add Image Feild to db - need image processing lib - pillow
-- pip install pillow
-- image = models.ImageField(null=True,blank=True)
+To run this project locally, follow these steps:
 
-## Redux Imports
-- npm install redux react-redux  redux-thunk 
-- npm install redux-devtools-extension --legacy-peer-deps     
+1. Clone the repository: https://github.com/CypherAk007/Ecommerce-website-django or https://github.com/CypherAk007/proshop-hosting/tree/main
 
-## React Navigation b/w pages
-- import { useNavigate } from 'react-router-dom';
-- navigate(`/cart/${id}?qty=${qty}`) 
+2. Navigate to the backend project directory: install dependencies from requirements.txt and npm install in frontend folder
 
-## Querry Parameter 
-- const location = useLocation()
-- const queryParams = new URLSearchParams(location.search)
-- const value = queryParams.get('qty')
 
-## JWT Auth 
-- https://django-rest-framework-simplejwt.readthedocs.io/en/latest/getting_started.html
-- Token access : http://127.0.0.1:8000/api/users/login/
-- decode your token: https://jwt.io/
-- Change LifeSpan of token : https://django-rest-framework-simplejwt.readthedocs.io/en/latest/settings.html#access-token-lifetime
+3. Start the backend development server: python manage.py runserver
 
-## Customize JWT Auth Tokens
-- https://django-rest-framework-simplejwt.readthedocs.io/en/latest/customizing_token_claims.html
-- ![img_custom_jwt_token](resources/custom_jwt_access_token.png)
-- https://github.com/jazzband/djangorestframework-simplejwt/blob/master/rest_framework_simplejwt/serializers.py#L69
+4. Start the frontend development server: npm start
 
-## Getting user data with token
-- Without token
-- ![Alt text](resources/postman_without_accesstoken.png)
-- With Token
-- ![Alt text](resources/postman_user_retrival.png)
+## Contributing
 
-## Get Custom name, _id, isAdmin with serilizer and not modifing db
-- Admin att official docs https://docs.djangoproject.com/en/5.0/ref/contrib/auth/
-- ![postmanimg](resources/custom_ser.png)
+We welcome contributions from the community! If you have any ideas for improvement or would like to report a bug, please open an issue or submit a pull request.
 
-## New Seriliazer for token regenerate - 
-- ![Alt text](resources/newtoken.png)
 
-## Getting all users from db
-- adding endpoint and also view to get users
-- ![Alt text](resources/getusersendpt.png)
+
+
+

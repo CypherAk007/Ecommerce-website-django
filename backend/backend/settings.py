@@ -24,8 +24,9 @@ SECRET_KEY = 'django-insecure-2+e@3s6d!g&!)e-b@xy_s!8jth$vx^elj0wwd1u3&ua&07w0p1
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+# DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.vercel.app','127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -97,6 +98,8 @@ SIMPLE_JWT = {
 
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+    
     "django.middleware.common.CommonMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -134,13 +137,23 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'railway',
+        'USER':'postgres',
+        'PASSWORD':'jrBpNMRQvPezaspWGAaACJODvUNniRpU',
+        'HOST':'viaduct.proxy.rlwy.net',
+        'PORT':'29268'
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -190,6 +203,20 @@ STATICFILES_DIRS = [
     BASE_DIR / 'frontend/build/static'
 ]
 
-MEDIA_ROOT = 'static/images'
+MEDIA_ROOT = BASE_DIR / 'static/images'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 CORS_ALLOW_ALL_ORIGINS =True
+
+# Dont show extra info in url of img 
+AWS_QUERYSTRING_AUTH = False
+
+# MEDIA ROOT IS OVERRIDDEN 
+DEFAULT_FILE_STORAGE = "storages.backends.s3.S3Storage"
+
+
+
+AWS_STORAGE_BUCKET_NAME = 'proshop-bucket-s3'
+
+if os.getcwd() == '/app':
+    DEBUG = False
