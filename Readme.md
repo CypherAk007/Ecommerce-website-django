@@ -2,6 +2,13 @@
 
 Welcome to ProShop, your ultimate destination for online shopping! Built with cutting-edge technologies, ProShop offers a seamless shopping experience for both customers and administrators. Below is an overview of the features and technologies incorporated into our platform.
 
+## Website URL
+[ProShop](https://proshop-hosting-m2jn0ab9j-abhisheks-projects-1fe066f3.vercel.app/)
+
+## Product Demo
+
+https://github.com/CypherAk007/Ecommerce-website-django/assets/71595919/25edb3c0-a996-4682-8b94-0b4b093cb3d9
+
 ## Features
 
 ### Customer Experience
@@ -26,13 +33,6 @@ Welcome to ProShop, your ultimate destination for online shopping! Built with cu
 - **Database:** PostgreSQL for secure and scalable data storage.
 - **Static Files Hosting:** AWS S3 for serving static files, ensuring high availability and reliability.
 - **Hosting:** Vercel for seamless deployment and hosting of the application.
-
-## Website URL
-[ProShop](https://proshop-hosting-m2jn0ab9j-abhisheks-projects-1fe066f3.vercel.app/)
-
-## Product Demo
-
-https://github.com/CypherAk007/Ecommerce-website-django/assets/71595919/25edb3c0-a996-4682-8b94-0b4b093cb3d9
 
 ## Installation
 
