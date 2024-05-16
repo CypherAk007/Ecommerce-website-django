@@ -30,6 +30,10 @@ Welcome to ProShop, your ultimate destination for online shopping! Built with cu
 ## Website URL
 [ProShop](https://proshop-hosting-m2jn0ab9j-abhisheks-projects-1fe066f3.vercel.app/)
 
+## Product Demo
+
+https://github.com/CypherAk007/Ecommerce-website-django/assets/71595919/25edb3c0-a996-4682-8b94-0b4b093cb3d9
+
 ## Installation
 
 To run this project locally, follow these steps:
